@@ -1,0 +1,30 @@
+{var $nextLine = false}
+<ul class="navbar-nav mr-auto">
+{foreach $menuItems as $menuItem}
+
+  {if $menuItem->position() > 5000 && !$nextLine}
+    {var $nextLine = true}
+    <br>
+  {/if}
+  {var $append = []}
+  {var $params = $menuItem->getParams()}
+  {if $params}
+    {foreach $params as $key => $value}
+      {var $append[] = "{$key}=\"{$value}\""}
+    {/foreach}
+  {/if}
+  
+    {ifCurrent $menuItem->link()}
+    <li class="nav-item active">
+        <a class="nav-link" href="{plink $menuItem->link()}"{implode(' ', $append)|noescape}>{$menuItem->name()}</a>
+    </li>
+    {else}
+        <li class="nav-item">
+          <a class="nav-link" href="{plink $menuItem->link()}"{implode(' ', $append)|noescape}>{$menuItem->name()}</a>
+      </li>
+    {/ifCurrent}
+
+  {sep}<div class="menu-separator"></div>{/sep}
+
+{/foreach}
+</ul>

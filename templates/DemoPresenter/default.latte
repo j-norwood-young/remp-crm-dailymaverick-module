@@ -1,0 +1,15 @@
+{block title}{_demo.default.title}{/block}
+
+{block #content}
+
+{control 'simpleWidget', 'frontend.demo.top'}
+
+<div class="page-header">
+  <h1>Demo default</h1>
+</div>
+
+<div n:ifset="$userId" class="row">
+  <div class="col-md-12">
+    Hello {$userId}
+  </div>
+</div>
